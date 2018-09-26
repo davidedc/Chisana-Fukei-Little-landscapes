@@ -4,7 +4,6 @@ Little black and white landscapes.
 
 ![screenshot 01](https://raw.githubusercontent.com/davidedc/Chisana-Fukei-Little-landscapes/master/ChisanaFukei/screenshots/Capture01.PNG)
 ![screenshot 02](https://raw.githubusercontent.com/davidedc/Chisana-Fukei-Little-landscapes/master/ChisanaFukei/screenshots/Capture02.PNG)
-![screenshot 03](https://raw.githubusercontent.com/davidedc/Chisana-Fukei-Little-landscapes/master/ChisanaFukei/screenshots/Capture03.PNG)
 ![screenshot 04](https://raw.githubusercontent.com/davidedc/Chisana-Fukei-Little-landscapes/master/ChisanaFukei/screenshots/Capture04.PNG)
 ![screenshot 05](https://raw.githubusercontent.com/davidedc/Chisana-Fukei-Little-landscapes/master/ChisanaFukei/screenshots/Capture05.PNG)
 ![screenshot 06](https://raw.githubusercontent.com/davidedc/Chisana-Fukei-Little-landscapes/master/ChisanaFukei/screenshots/Capture06.PNG)
