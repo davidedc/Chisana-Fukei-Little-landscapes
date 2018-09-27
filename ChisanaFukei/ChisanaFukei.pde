@@ -131,16 +131,15 @@ void trunk(int level) {
 }
 
 void drawBall() {
-  background(255);
-  translate(width/2, height/2); 
   float prevX = 9,prevY = 8;
   float firstX = 9,firstY = 8;
   float noiseStart = random(188); 
 
   pushMatrix();
-  scale(1.5,0.5);
-  translate(5,55);
-  int n = 25;
+  rotate(-0.1);
+  scale(1.5,0.35);
+  translate(10,90);
+  int n = 55;
   for(int i = 1; i < n; i++) {
     float angle = i*PI/n;
     float radius = 39 + noise(angle + noiseStart);
@@ -156,7 +155,7 @@ void drawBall() {
       //stroke(0);
       //line(prevX,prevY, x, y); 
       strokeWeight(2);
-      stroke(60,255);
+      stroke(60,100);
       line(2+x*0.8 + random(2),y*0.8+ random(2),-2+x*0.8+ random(2),-y*0.8+ random(2));
     }
     prevX = x;
@@ -190,6 +189,7 @@ void drawBall() {
     prevY = y; 
   }
 
+  pushMatrix();
   n = 2000;
   int displacement = 7;
   translate(-displacement,-displacement);
@@ -203,6 +203,7 @@ void drawBall() {
       rect(x,y,1,1);
     } 
   }
+  popMatrix();
 }
 
 
@@ -272,7 +273,8 @@ void drawTree() {
     stone();
   }
   popStyle();
-  
+
+
   translate(width/2, height - 80);
 
     //fill(255,0,0);
@@ -310,9 +312,16 @@ void drawTree() {
   rotate(random(-PI/20,PI/20));
   trunk(0);
 
-  //for (int i = 0; i < 400; i = i+1) {
-  //  trunk(length);
-  //}
+  resetMatrix();
+  for (int i = 0; i < 1; i = i+1) {
+    pushMatrix();
+    //translate(width/2,height/2);
+    translate(random(width/10, width - width/10),height/2+height/(2.3+random(0.8)));
+    scale(0.7);
+    drawBall();
+    popMatrix();
+  }
+
 }
 
 void stone() {
