@@ -1,8 +1,5 @@
 // 小さな風景 Chīsana fūkei is Japanese for "small landscapes"
 
-float[][] distances;
-float maxDistance;
-int spacer;
 float branchSize = 1000.0/18.0;
 int maxBranchesLevel = 15;
 boolean shadow = false;
@@ -200,10 +197,8 @@ void drawTree() {
     stone();
   }
   popStyle();
-
   
   translate(width/2, height - 80);
-
 
     //fill(255,0,0);
   //ellipse(0,0,50,50);
@@ -213,9 +208,6 @@ void drawTree() {
     line(i,i/10+random(5),i, i/10+random(5));
     line(-10-i,i/10+random(5),-10-i, i/10+random(5));
   }
-
-
-
   
   float length = 70;
   int seed = round(random(0,100));
@@ -223,9 +215,6 @@ void drawTree() {
 
   shadow = true;
   strokeWeight(3);
-
-
-
 
   applyMatrix( 
   1, tan( radians(-65) ), 0,
