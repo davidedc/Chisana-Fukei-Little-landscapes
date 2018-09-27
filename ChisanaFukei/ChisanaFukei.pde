@@ -130,9 +130,84 @@ void trunk(int level) {
   //translate(len, 0);
 }
 
-void drawTree() {
+void drawBall() {
   background(255);
-    
+  translate(width/2, height/2); 
+  float prevX = 9,prevY = 8;
+  float firstX = 9,firstY = 8;
+  float noiseStart = random(188); 
+
+  pushMatrix();
+  scale(1.5,0.5);
+  translate(5,55);
+  int n = 25;
+  for(int i = 1; i < n; i++) {
+    float angle = i*PI/n;
+    float radius = 39 + noise(angle + noiseStart);
+    float x = radius * cos(angle);
+    float y = radius * sin(angle);
+    if (i==1) {
+      firstX = x-5;
+      firstY = y;
+    } else {
+      //x = (n-i)*x/n + i*firstX/n;
+      //y = (n-i)*y/n + i*firstY/n;
+      //strokeWeight(1);
+      //stroke(0);
+      //line(prevX,prevY, x, y); 
+      strokeWeight(2);
+      stroke(60,255);
+      line(2+x*0.8 + random(2),y*0.8+ random(2),-2+x*0.8+ random(2),-y*0.8+ random(2));
+    }
+    prevX = x;
+    prevY = y; 
+  }
+
+  popMatrix();
+
+  n = 50;
+  for(int i = 1; i < n; i++) {
+    float angle = i*2*PI/n;
+    float radius = 39 + noise(angle + noiseStart);
+    float x = radius * cos(angle);
+    float y = radius * sin(angle);
+    if (i==1) {
+      firstX = x;
+      firstY = y;
+    } else {
+      //x = (n-i)*x/n + i*firstX/n;
+      //y = (n-i)*y/n + i*firstY/n;
+
+      strokeWeight(5);
+      stroke(255);
+      line(x, y,0,0); 
+
+      strokeWeight(1);
+      stroke(0);
+      line(prevX,prevY, x, y); 
+    }
+    prevX = x;
+    prevY = y; 
+  }
+
+  n = 2000;
+  int displacement = 7;
+  translate(-displacement,-displacement);
+  for(int i = 1; i < n; i++) {
+    float randomAngle = random(0,2*PI);
+    float randomRadius = 1.55*30*(1 - pow(random(0,0.9),9));
+    float x = randomRadius * cos(randomAngle);
+    float y = randomRadius * sin(randomAngle);
+    if (dist(x,y,displacement,displacement) < 39) {
+      stroke(0,150);
+      rect(x,y,1,1);
+    } 
+  }
+}
+
+
+void drawTree() {
+  background(255);    
 
   int seed2 = round(random(0,100));
   noiseSeed(seed2);
