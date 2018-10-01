@@ -207,6 +207,157 @@ void drawBall() {
 }
 
 
+// LINE/LINE
+float[] theReturn = new float[2];
+float[] lineToLine(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
+  // calculate the distance to intersection point
+  theReturn[0] = 0;
+  theReturn[1] = 0;
+  float uA = ((x4-x3)*(y1-y3) - (y4-y3)*(x1-x3)) / ((y4-y3)*(x2-x1) - (x4-x3)*(y2-y1));
+  float uB = ((x2-x1)*(y1-y3) - (y2-y1)*(x1-x3)) / ((y4-y3)*(x2-x1) - (x4-x3)*(y2-y1));
+  
+  // if uA and uB are between 0-1, lines are colliding
+  if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1) {
+    // optionally, draw a circle where the lines meet
+    float intersectionX = x1 + (uA * (x2-x1));
+    float intersectionY = y1 + (uA * (y2-y1));
+    //fill(255,0,0);
+    //noStroke();
+    //ellipse(intersectionX,intersectionY, 20,20);
+    
+    theReturn[0] = intersectionX;
+    theReturn[1] = intersectionY;
+    return theReturn;
+  }
+  theReturn[0] = 0;
+  theReturn[1] = 0;
+  return theReturn;
+}
+
+void wigglyLine(float startX, float startY, float endX, float endY) {
+
+  float startXSplit = 0;
+  float startYSplit = 0;
+
+  float endXSplit = startX;   
+  float endYSplit = startY;
+
+  float vectX = endX - startX;
+  float vectY = endY - startY;
+
+  for(int i = 1; i < 12; i++) {
+
+    startXSplit = endXSplit;   
+    startYSplit = endYSplit;
+
+    endXSplit = startX + (i+1)*vectX/12;   
+    endYSplit = startY + (i+1)*vectY/12;
+    
+    endXSplit += random(-1,1);
+    endYSplit += random(-1,1);
+
+    float aRandom = random(0,10);
+    if (aRandom < 0.2)
+      stroke(255);
+    else if (aRandom < 3)
+      stroke(125);
+    else
+      stroke(0);
+
+    line(startXSplit, startYSplit, endXSplit, endYSplit );
+    //prevX = endXSplit;
+    //prevY = endYSplit;
+  }
+
+}
+
+void drawDurerPolygon() {
+  pushMatrix();
+  
+  scale(0.1,0.1);
+  
+
+  
+  stroke(0);
+  strokeWeight(10);
+
+
+  for(int i = 1; i < 12; i++) {
+    wigglyLine(221+i*20,746+i*20,856+i*20,659+i*20);
+  }
+
+  fill(255);
+  noStroke();
+  triangle(344,878,733,809,937,614);
+  triangle(221,746,344,878,733,809);
+  triangle(221,746,937,614,344,878);
+  noFill();
+
+  
+  wigglyLine(263,65,630,53);
+  wigglyLine(263,65,625,69); // fill
+  wigglyLine(263,65,619,89);
+
+  wigglyLine(263,65,77,236);
+
+  wigglyLine(77,236,227,752);
+
+  wigglyLine(630,53,619,89);
+
+  wigglyLine(619,89,721,299);
+
+  wigglyLine(619,89,721,299);
+
+  wigglyLine(721,299,227,752);
+
+  wigglyLine(227,752,334,881);
+
+  wigglyLine(334,881,733,806);
+
+  wigglyLine(733,806,931,620);
+
+  wigglyLine(625,68,931,620); // fill
+
+  wigglyLine(931,620,721,299);
+
+  wigglyLine(931,620,630,53);
+
+  for(int i = 1; i < 12; i++) {
+    float vectorx = 721 - 227;
+    float vectory = 752 - 299;
+    float fullLineStartX = 227 + i*vectorx/20;
+    float fullLineStartY = 752 + i*vectory/20;
+    float fullLineEndX = 227 + i*vectorx/20 + vectorx;
+    float fullLineEndY = 752 + i*vectory/20 - vectory;
+
+    float[] shortStart;
+    float[] shortEnd;
+    //float shortStart1 = lineToLine(fullLineStartX,fullLineStartY,fullLineEndX,fullLineEndY,227+10,752,334+10,881)[0];
+    //float shortStart2 = lineToLine(fullLineStartX,fullLineStartY,fullLineEndX,fullLineEndY,227+10,752,334+10,881)[1];
+
+    shortEnd = lineToLine(fullLineStartX-30,fullLineStartY+5,fullLineEndX+30,fullLineEndY+5,721,299,931+10,620+10);
+    float shortEndX = shortEnd[0];
+    float shortEndY = shortEnd[1];
+
+
+    shortStart = lineToLine(fullLineStartX-30,fullLineStartY+5,fullLineEndX+20,fullLineEndY+5,227,752,334,881);
+    float shortStartX = shortStart[0];
+    float shortStartY = shortStart[1];
+    if (shortStartX != 0 && shortStartY != 0)
+      wigglyLine(shortStartX,shortStartY,shortEndX,shortEndY);
+
+    shortStart = lineToLine(fullLineStartX-30,fullLineStartY+5,fullLineEndX+20,fullLineEndY+5,334,881,733,806);
+    shortStartX = shortStart[0];
+    shortStartY = shortStart[1];
+    if (shortStartX != 0 && shortStartY != 0)
+      wigglyLine(shortStartX,shortStartY,shortEndX,shortEndY);
+
+}
+
+  popMatrix();
+}
+
+
 void drawTree() {
   background(255);    
 
@@ -319,6 +470,16 @@ void drawTree() {
     translate(random(width/10, width - width/10),height/2+height/(2.3+random(0.8)));
     scale(0.7);
     drawBall();
+    popMatrix();
+  }
+
+  resetMatrix();
+  for (int i = 0; i < 1; i = i+1) {
+    pushMatrix();
+    //translate(width/2,height/2);
+    translate(random(width/10, width - width/10),height/2+height/(2.5+random(0.8)));
+    //scale(0.7);
+    drawDurerPolygon();
     popMatrix();
   }
 
