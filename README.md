@@ -1,6 +1,6 @@
 # 小さな風景 Chīsana fūkei: little landscapes
 
-小さな風景 (Chīsana fūkei): little procedural black and white landscapes. "inking" of tree imitates [Incorvengent's](https://github.com/inconvergent/tree) (independent re-implementation though).
+小さな風景 (Chīsana fūkei): little procedural black and white landscapes. "inking" of tree imitates [Inconvengent's](https://github.com/inconvergent/tree) (independent re-implementation though).
 
 ![screenshot 00](https://raw.githubusercontent.com/davidedc/Chisana-Fukei-Little-landscapes/master/ChisanaFukei/screenshots/Capture00.PNG)
 ![screenshot 01](https://raw.githubusercontent.com/davidedc/Chisana-Fukei-Little-landscapes/master/ChisanaFukei/screenshots/Capture01.PNG)
